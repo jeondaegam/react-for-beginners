@@ -11,13 +11,23 @@
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
 <script>
   const root = document.getElementById("root");
-  const span = React.createElement("span",
+
+  // arguments 1: tag type,
+  // arguments 2: property(id, class name ..)
+  // arguments 3: text
+  const h3 = React.createElement("h3",
       {
-        id: "sexy-span",
-        style: {color: "red"}
+       onMouseEnter: () => console.log("mouse enter"),
       },
       "I'm a span");
-  // arguments 1: tag type, 2: property(id, class name ..)
-  ReactDOM.render(span, root); // 사용자에게 보여준다. span을 root안에 render 한다.
+  const btn = React.createElement("button",
+      {
+        onClick: () => console.log("im clicked"),
+      },
+      "Click me");
+  const container = React.createElement("div", null, [h3, btn]);
+
+
+  ReactDOM.render(container, root); // 사용자에게 보여준다. element를 root 안에 render 한다.
 </script>
 </html>
