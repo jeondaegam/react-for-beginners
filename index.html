@@ -17,11 +17,12 @@
   // arguments 2: property(id, class name ..)
   // arguments 3: text
 
-  const title =
-      (<h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-        Hello I'm a title</h3>);
+  function Title() {
+    return (<h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+      Hello I'm a title</h3>);
+  }
 
-  const button = (
+  const Button = () => (
       <button
           style={{
             backgroundColor: "tomato"
@@ -32,14 +33,11 @@
       </button>
   );
 
-  // const btn = React.createElement("button",
-  //     {
-  //       onClick: () => console.log("im clicked"),
-  //     },
-  //     "Click me");
-  const container = React.createElement("div", null, [title, button]);
-
-  // const container = <div>[title, button]</div>
-  ReactDOM.render(container, root); // 사용자에게 보여준다. element를 root 안에 render 한다.
+  const Container = () =>
+      (<div>
+        <Title/>
+        {Button}
+      </div>);
+  ReactDOM.render(<Container/>, root); // 사용자에게 보여준다. element를 root안에 렌더링 한다.
 </script>
 </html>

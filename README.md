@@ -2,8 +2,9 @@
 
 ### React JS
 
-- application이 interactive하게 만들어주는 library. ( =engine)
-
+- 어플리케이션을 interactive하게 만들어주는 library. ( =engine)
+  
+  
 ### Vanilla JS와 React JS의 차이점
 
 코드의 시작점이 다르다.
@@ -14,7 +15,8 @@
     - JS를 통해 element를 만들고 제어한다.
     - 필요한 element만 업데이트 한다.
     - 유저에게 보여질 내용을 컨트롤 할 수 있다.
-
+  
+  
 ### React JS 문법으로 element 만들기
 
 ```javascript
@@ -34,7 +36,8 @@
 
 </script>
 ```
-
+  
+  
 ## 2.3 Events in React
 
 - React JS 문법으로 event 등록하기.
@@ -49,14 +52,16 @@ const btn = React.createElement("button",
 const container = React.createElement("div", null, [h3, btn]);
 ReactDOM.render(container, root); // Htmlbody에 elements를 보여준다.
 ```
-**ReactDOM**: React element를 Html body에 두는 역할을 한다
-
+**ReactDOM**: React element를 Html body에 두는 역할을 한다 
+  
   
 ## 2.5 JSX
 
-Html과 흡사한 문법으로 React element를 만든다.
+Html과 흡사한 형식으로 React element를 만든다.  
+createElement를 대체하는 편리한 방법을 제공한다.
 
 - JSX 문법으로 element 만들기
+  - event를 property처럼 작성한다.
 ```javascript
   const button = (
       <button
@@ -72,7 +77,7 @@ Html과 흡사한 문법으로 React element를 만든다.
 
 **Babel**
 - JSX 문법으로 작성한 코드를 브라우저가 이해하는 React JS 형식으로 변환해준다.
-  - [Babel test link][https://babeljs.io/repl]
+  - [Babel test link](https://babeljs.io/repl)
 - Babel 사용 방법
 ```javascript
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
