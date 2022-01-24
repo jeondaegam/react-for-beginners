@@ -12,15 +12,12 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
   const root = document.getElementById("root");
-  let counter = 0;
+
+  // let counter = 0;
 
   function countUp() {
     counter = counter + 1;
     render();
-  }
-
-  function render() {
-    ReactDOM.render(<Container/>, root);
   }
 
   // function Title() {
@@ -28,22 +25,35 @@
   //     Hello I'm a title</h3>);
   // }
 
-  // function Button은
-  // button React Element를 return한다.
+  function App() {
+    const [counter, modifier] = React.useState(0);
+    // const data = React.useState(4);
+    // console.log(data);
+    return (
+        <div>
+          <h3>Total clicks: 0 </h3>
+          <button onClick={countUp}>Click me</button>
+        </div>
+    );
+  }
 
-  // React Element를 생성하고, 그게 div태그이다.
-  // 그 안에 h3, button 태그를 담고 있다.
-  const Container = () => (
-      <div>
-        <h3>Total clicks: {counter}</h3>
-        <button onClick={countUp}>Click me</button>
-      </div>
-  );
+  // ** arrow function **
+  // 중괄호로 전체를 감싸주고 return할 부분을 소괄호로 감싸준다.
+
+  // const App = () => {
+  //   const [counter, modifier] = React.useState(0);
+  //   return (<div>
+  //         <h3>Total clicks: {counter}</h3>
+  //         <button onClick={countUp}>Click me</button>
+  //       </div>
+  //   )
+  // };
+
+
+  function render() {
+    ReactDOM.render(<App/>, root); // render a container at root
+  }
+
   render();
-
 </script>
 </html>
-
-
-<!--
-// ui update 해주기. container rerendering하기.-->

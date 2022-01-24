@@ -19,7 +19,7 @@
   
 ### React JS 문법으로 element 만들기
 
-```javascript
+```html
 <script>
   /*
   argument 1: tag type
@@ -35,8 +35,7 @@
   "I'm a span");
 
 </script>
-```
-  
+``` 
   
 ## 2.3 Events in React
 
@@ -50,7 +49,7 @@ const btn = React.createElement("button",
     "Click me");
 
 const container = React.createElement("div", null, [h3, btn]);
-ReactDOM.render(container, root); // Htmlbody에 elements를 보여준다.
+ReactDOM.render(co ntainer, root); // Htmlbody에 elements를 보여준다.
 ```
 **ReactDOM**: React element를 Html body에 두는 역할을 한다 
   
