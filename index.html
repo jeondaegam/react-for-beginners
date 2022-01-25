@@ -19,30 +19,46 @@
   // }
 
   function App() {
-    const [minutes, setMinutes] = React.useState(); // state로 설정한 minutes을 업데이트 할거야 !
+    const [amount, setAmount] = React.useState(); // state로 설정한 minutes을 업데이트 할거야 !
+    const [flipped, setFlipped] = React.useState(false); // flip을 state로 설정
     const onChange = (event) => {
-      setMinutes(event.target.value);
+      setAmount(event.target.value);
     }
     const reset = () => {
-     setMinutes(0);
+     setAmount(0);
+    }
+    const onFlip = () => {
+      reset();
+      // setFlipped(!flipped); // true => false, false => true
+      setFlipped((current) => !current); // more safety
     }
     return (
         <div>
           <h1>Super Converter</h1>
           <div>
             <label htmlFor="minutes">Minutes</label>
-            <input value={minutes}  // input value를 state로 연결함. minutes을  값으로 리스닝 한다.
+            <input value={flipped ? amount * 60 : amount}  // input value를 state로 연결함. amount를 값으로 리스닝 한다.
+                // flipped가 true일 때 시간을 분으로 계산해 보여준다.
                    id="minutes"
                    placeholder="Minutes"
                    type="number"
-                   onChange={onChange}/>
-            <h4> You want to convert {minutes}</h4>
+                   onChange={onChange}
+                   disabled={flipped}
+            />
           </div>
           <div>
             <label htmlFor="hours">Hours</label>
-            <input value={Math.round(minutes / 60)} id="hours" placeholder="Hours" type="number"/>
+            <input value={flipped ? amount : Math.round(amount / 60)}
+                   // flipped가 true일 때(=hours창이 열려있을 때) 입력한 값을 그대로 보여준다.
+                   id="hours"
+                   placeholder="Hours"
+                   type="number"
+                   disabled={!flipped}
+                   onChange={onChange}
+            />
           </div>
           <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
         </div>
     );
   }
