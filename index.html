@@ -22,16 +22,17 @@
    * @returns {JSX.Element}
    * @constructor
    */
-  function Btn(props) {
-    console.log(props);
+  function Btn({message, big}) {
+    console.log(message);
+
     return <button style={{
       background: "tomato",
       color: "white",
       padding: "10px 20px",
       borderRadius: 10,
       border: 0,
-      fontSize: props.big? 17 : 10
-    }}>{props.message}</button>;
+      fontSize: big? 17 : 10,
+    }}>{message}</button>;
   }
 
   /**
