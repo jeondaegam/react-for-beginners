@@ -17,85 +17,37 @@
   //     Hello I'm a title</h3>);
   // }
 
-  function MinutesToHours() {
-    const [amount, setAmount] = React.useState(); // state로 설정한 minutes을 업데이트 할거야 !
-    const [flipped, setFlipped] = React.useState(false); // flip을 state로 설정
-    const onChange = (event) => {
-      setAmount(event.target.value);
-    }
-    const reset = () => {
-      setAmount(0);
-    }
-    const onFlip = () => {
-      reset();
-      // setFlipped(!flipped); // true => false, false => true
-      setFlipped((current) => !current); // more safety
-    }
-    return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input value={flipped ? amount * 60
-                : amount}  // input value를 state로 연결함. amount를 값으로 리스닝 한다.
-                // minutes가 flipped 되어있으면? 입력된 시간을 분으로 계산해 보여준다.
-                   id="minutes"
-                   placeholder="Minutes"
-                   type="number"
-                   onChange={onChange}
-                   disabled={flipped}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input value={!flipped ? Math.round(amount / 60) : amount}
-                // hours가 flipped 되어있으면 ? (=hours창이 열려있을 때) 입력한 값을 그대로 보여준다.
-                // flipped == false
-                // => hours == true -> disabled
-                // 입력된 분을 시간으로 계산한다.
-
-                   id="hours"
-                   placeholder="Hours"
-                   type="number"
-                   disabled={!flipped}
-                   onChange={onChange}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={onFlip}>{flipped ? "input minutes" : "input hours"}</button>
-        </div>
-    );
-  }
-
-  function KmToMiles() {
-    return <h3>KM 2 M</h3>
+  /**
+   * 함수형 컴포넌트
+   * @returns {JSX.Element}
+   * @constructor
+   */
+  function Btn(props) {
+    console.log(props);
+    return <button style={{
+      background: "tomato",
+      color: "white",
+      padding: "10px 20px",
+      borderRadius: 10,
+      border: 0,
+      fontSize: props.big? 17 : 10
+    }}>{props.message}</button>;
   }
 
   /**
    * root div를 그려주는 컴포넌트
    * 2개의 컴포넌트를 렌더링 한다.
-   *
+   * 부모 컴포넌트
    * */
   function App() {
-    const [index, setIndex] = React.useState("xx");
-    const onSelect = (event) => {
-      setIndex(event.target.value);
-      console.log(event.target.value);
-    }
-    return (
+    return ( // <div>의 내부를 JSX의 내부라고 한다.
         <div>
-          <h1>Super Converter</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="xx">Select your units</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">Km & Miles</option>
-          </select>
-          <hr/>
-          {index === "xx"? "Please select your units" : null}
-          {index === "0" ? <MinutesToHours/> : null}
-          {index === "1" ? <KmToMiles /> : null}
+          <Btn message="Save Changes" big={true}/>
+          <Btn message="Continue"big={false}/>
         </div>
     );
   };
+  // Btn({message="ddd"}) ==> 이것과 같다. 첫번째 파라미터로 message="ddd"를 넘겨줌.
 
   // ** arrow function **
   // 중괄호로 전체를 감싸주고 return할 부분을 소괄호로 감싸준다.
