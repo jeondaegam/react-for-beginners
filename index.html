@@ -22,18 +22,22 @@
    * @returns {JSX.Element}
    * @constructor
    */
-  function Btn({message, big}) {
+  function Btn({message, clickCheck}) {
     console.log(message);
 
-    return <button style={{
-      background: "tomato",
-      color: "white",
-      padding: "10px 20px",
-      borderRadius: 10,
-      border: 0,
-      fontSize: big? 17 : 10,
-    }}>{message}</button>;
+    // 실제 이벤트 리스너, 설정은 이곳에 작성해야 작동됨.
+    return <button
+        onClick={clickCheck}
+        style={{
+          background: "tomato",
+          color: "white",
+          padding: "10px 20px",
+          borderRadius: 10,
+          border: 0,
+        }}>{message}</button>;
   }
+
+
 
   /**
    * root div를 그려주는 컴포넌트
@@ -41,13 +45,20 @@
    * 부모 컴포넌트
    * */
   function App() {
+    const [value, setValue] = React.useState("Save Changes");
+    const changeValue = () => setValue("Revert Changes");
     return ( // <div>의 내부를 JSX의 내부라고 한다.
         <div>
-          <Btn message="Save Changes" big={true}/>
-          <Btn message="Continue"big={false}/>
+          <Btn message={value} clickCheck={changeValue}/>
+          <Btn message="Continue"/>
         </div>
     );
   };
+/*
+   onClick 등 이곳에 들어가는 것은 단지 prop 이름일 뿐이고,
+   Btn 안으로 전달되는 것이다. 이벤트 리스너가 아니고 html에 적용되지도 않음.
+   Btn() 에게 전달하는 역할일뿐
+*/
   // Btn({message="ddd"}) ==> 이것과 같다. 첫번째 파라미터로 message="ddd"를 넘겨줌.
 
   // ** arrow function **
